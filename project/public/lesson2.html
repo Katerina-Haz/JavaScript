@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Задание 4</h2>
+    <p>Присвоить переменной <b>a</b> значение в промежутке [0..15].
+        <br> С помощью оператора switch организовать вывод чисел от a до 15.
+        <br> НЕ использовать: 1) циклы; 2) массивы</p>
+    <button onclick="lineNumber()">Проверить</button>
+    <h2>Задание 5</h2>
+    <p>Реализовать 4 основные арифметические операции в виде функций с двумя параметрами
+        <br> Обязательно использовать оператор return.</p>
+    <button onclick="tesk5()">Проверить</button>
+    <h2>Задание 6</h2>
+    <p>Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation),
+        <br>где arg1, arg2 – значения аргументов, operation – строка с названием операции.
+        <br>В зависимости от переданного значения операции выполнить одну из арифметических операций
+        <br>(использовать функции из пункта 5) и вернуть полученное значение (использовать switch).</p>
+    <button onclick="task6()">Проверить</button>
+    <h2>Задание 7</h2>
+    <p>*Сравнить null и 0. Попробуйте объяснить результат.</p>
+    <button onclick="task7()">Проверить</button>
+    <h2>Задание 8</h2>
+    <p>*С помощью рекурсии организовать функцию возведения числа в степень.
+        <br>Формат: function power(val, pow), где val – заданное число, pow – степень.</p>
+    <button onclick="task8()">Проверить</button>
+    <h2>Задание 9</h2>
+    <p>*Доделать игру с урока</p>
+    <button onclick="game()">Проверить 1й вариант</button>
+    <button onclick="task9()">Проверить 2й вариант</button>
+    <script>
+        // 4 задание.......................................
+        function number(n) {
+            let a = Math.floor(Math.random() * n);
+            return a;
+        }
+
+        function lineNumber() {
+            let line = number(16); //указано 16 для того, что бы все числа от 0 до 15-ти выпадали с равной вероятностью
+            switch (line) {
+            case 0:
+                console.log(0);
+            case 1:
+                console.log(1);
+            case 2:
+                console.log(2);
+            case 3:
+                console.log(3);
+            case 4:
+                console.log(4);
+            case 5:
+                console.log(5);
+            case 6:
+                console.log(6);
+            case 7:
+                console.log(7);
+            case 8:
+                console.log(8);
+            case 9:
+                console.log(9);
+            case 10:
+                console.log(10);
+            case 11:
+                console.log(11);
+            case 12:
+                console.log(12);
+            case 13:
+                console.log(13);
+            case 14:
+                console.log(14);
+            case 15:
+                console.log(15);
+                break;
+            default:
+                console.log('что-то пошло не так');
+                break;
+            }
+        }
+        // 5 задание.....................................................
+        function tesk5() {
+            let a = yourNumber('первое число');
+            let b = yourNumber('второе число');
+            console.log(`Вы выбрали : ${a} и ${b}`);
+            console.log(`Сумма : ${sum(a, b)}`);
+            console.log(`Умножение : ${multiplication(a, b)}`);
+            console.log(`Вычитание : ${subtraction(a, b)}`);
+            console.log(`Деление : ${division(a, b)}`);
+        }
+
+        function yourNumber(coment) {
+            let n = +prompt('Введите ' + coment);
+            return n;
+        }
+
+        function sum(a, b) {
+            let addition = a + b;
+            return addition;
+        }
+
+        function multiplication(a, b) {
+            let multi = a * b;
+            return multi;
+        }
+
+        function subtraction(a, b) {
+            let subt = a - b;
+            return subt;
+        }
+
+        function division(a, b) {
+            let divi = a / b;
+            return divi.toFixed(2);
+        }
+        // моя версия 6го задания, интересно Ваше мнение.....................................
+        function task6() {
+            a = yourNumber('первое число');
+            b = yourNumber('второе число');
+            let operation = operationMath();
+            console.log(`Вы выбрали : ${a} и ${b}\nрезультат ${operation}`);
+        }
+
+        function operationMath() {
+            let expression = +prompt('Выберите операцию:\n1 - сложение;\n2 - умножение;\n3 - вычитание;\n4 - деление;');
+            switch (expression) {
+            case 1:
+                return 'сложения : ' + sum(a, b);
+                break;
+            case 2:
+                return 'умножения : ' + multiplication(a, b);
+                break;
+            case 3:
+                return 'вычитания : ' + subtraction(a, b);
+                break;
+            case 4:
+                return 'деления : ' + division(a, b);
+                break;
+            default:
+                console.log('что-то пошло не так');
+                break;
+            }
+        }
+        // 7 задание...................................      
+        function task7() {
+            console.log(' null > 0\n false\n null < 0\n false\n null == 0\n false\n false\n null <= 0\n true\n null >= 0\n true\n null != 0\n true\n');
+            console.log('Есть закономерность в том, что выражение является истинным только в тех случаях, когда есть 2 сравнения: Больше, либо равно; НЕ равно и т.д. Видимо js, сранивая 2 варианта одного выражения между собой, автоматически исключает один, делая выбор в пользу второго, т.к. вдвоем они не могут быть верными.. Но стало очень интересно узнать ответ!');
+        }
+        // 8 задание...........................................
+        function power(val, pow) {
+            if (pow == 0) return 1;
+            else return power(val, pow - 1) * val;
+        }
+
+        function task8() {
+            a = yourNumber('число');
+            b = yourNumber('степень');
+            c = power(a, b)
+            console.log(`Число ${a} в ${b} степени равно : ${c}`);
+        }
+        // 9 задание вариант 1.................................
+        let rock = 'камень';
+        let scissors = 'ножницы';
+        let paper = 'бумага';
+
+        function player1() {
+            let player1 = +prompt('Выберите :\n1 - камень;\n2 - ножницы;\n3 - бумага;');
+            return player1;
+        }
+
+        function player2() {
+            let player2 = number(3) + 1;
+            return player2;
+        }
+
+        function choice(arg) {
+            let argument = arg;
+            switch (argument) {
+            case 1:
+                return rock;
+                break;
+            case 2:
+                return scissors;
+                break;
+            case 3:
+                return paper;
+                break;
+            }
+        }
+
+        function game() {
+            you = choice(player1());
+            computer = choice(player2());
+            switch (true) {
+            case you == rock && computer == scissors:
+            case you == scissors && computer == paper:
+            case you == paper && computer == rock:
+                console.log(`Вы победили!\n${you} / ${computer}.`);
+                break;
+            case you == scissors && computer == rock:
+            case you == paper && computer == scissors:
+            case you == rock && computer == paper:
+                console.log(`Вы проиграли!\n${you} / ${computer}.`);
+                break;
+            case you == computer:
+                console.log(`Ничья!\nпопробуйте еще раз.`);
+                game();
+                break;
+            default:
+                game();
+            }
+        }
+        // 9 задание вариант 2...........................................
+        function task9() {
+            let you = +prompt('Выберите :\n1 - камень;\n2 - ножницы;\n3 - бумага;');
+            let computer = number(3) + 1;
+            switch (true) {
+            case you == 1 && computer == 2:
+                console.log(`Вы победили!\nкамень против ножниц.`);
+                break;
+            case you == 2 && computer == 3:
+                console.log(`Вы победили!\nножницы против бумаги.`);
+                break;
+            case you == 3 && computer == 1:
+                console.log(`Вы победили!\nбумага против камня`);
+                break;
+            case you == 2 && computer == 1:
+                console.log(`Вы проиграли!\nножницы против камня.`);
+                break;
+            case you == 3 && computer == 2:
+                console.log(`Вы проиграли!\nбумага против ножниц.`);
+                break;
+            case you == 1 && computer == 3:
+                console.log(`Вы проиграли!\nкамень против бумаги.`);
+                break;
+            case you == computer:
+                console.log(`Ничья!\nпопробуйте еще раз.`);
+                task9();
+                break;
+            default:
+                task9();
+            }
+        }
+    </script>
+</body>
+
+</html>
